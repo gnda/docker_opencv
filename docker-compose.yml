@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  opencv:
+    build: .
+    container_name: opencv
+    volumes:
+      - ${PWD}/src:/src
