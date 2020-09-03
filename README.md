@@ -6,18 +6,14 @@ Ce guide n'est pas exhaustif, pour plus d'informations veuillez consulter les li
 - [Docker in WSL2](https://code.visualstudio.com/blogs/2020/03/02/docker-in-wsl2)
 - [A Practical Guide to Choosing between Docker Containers and VMs](https://www.weave.works/blog/a-practical-guide-to-choosing-between-docker-containers-and-vms)
 
-Support des systèmes d'exploitation suivants :
-
-- [x] Windows 10
-- [ ] macOS
-- [ ] Linux
-
 # Objectifs
 
 - Fournir un même environnement de développement contenant OpenCV pour tout le monde, quelle que soit la machine hôte.
 - Fournir quelque chose de plus léger à transmettre qu'une image pour machine virtuelle.
 
 # Installation
+
+Se référer à la [doc officielle](https://docs.docker.com/get-docker/) de Docker pour l'installation sur Windows 10 / MacOS / Linux.
 
 ## Windows 10
 
