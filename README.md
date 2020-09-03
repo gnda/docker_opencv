@@ -14,7 +14,7 @@ Support des systèmes d'exploitation suivants :
 
 # Objectifs
 
-- Fournir un même enivonnement de développement contenant OpenCV pour tout le monde, quel que soit la machine hôte.
+- Fournir un même environnement de développement contenant OpenCV pour tout le monde, quelle que soit la machine hôte.
 - Fournir quelque chose de plus léger à transmettre qu'une image pour machine virtuelle.
 
 # Installation
@@ -69,7 +69,7 @@ Pour compiler vos sources en debug, il faudra entrer la commande suivante :
 docker-compose run --rm opencv /bin/bash -c "cd build && cmake ../src/ -D OpenCV_DIR=/usr/local/opencv/debug/ && make"
 ```
 
-L'exécutable est nommé app et se trouve dans le répertoire workspace/build :
+L'exécutable est nommé app et se trouve dans le répertoire workspace/build, pour le lancer :
 
 ```
 docker-compose run --rm opencv ./build/app
