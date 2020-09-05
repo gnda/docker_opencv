@@ -82,6 +82,7 @@ cmake \
  -D BUILD_EXAMPLES:BOOL=OFF \
  -D BUILD_JAVA:BOOL=OFF \
  -D BUILD_PERF_TESTS:BOOL=OFF \
+ -D BUILD_SHARED_LIBS:BOOL=OFF \
  -D BUILD_TESTS:BOOL=OFF \
  -D WITH_QT:BOOL=ON \
  -D OPENCV_EXTRA_MODULES_PATH=/data/opencv_contrib/modules \
@@ -102,6 +103,7 @@ cmake \
  -D BUILD_EXAMPLES:BOOL=ON \
  -D BUILD_JAVA:BOOL=OFF \
  -D BUILD_PERF_TESTS:BOOL=OFF \
+ -D BUILD_SHARED_LIBS:BOOL=OFF \
  -D BUILD_TESTS:BOOL=OFF \
  -D WITH_QT:BOOL=ON \
  -D OPENCV_EXTRA_MODULES_PATH=/data/opencv_contrib/modules \
@@ -111,4 +113,3 @@ mkdir -p /usr/local/opencv/release/samples
 mv bin/example_* /usr/local/opencv/release/samples/
 rm -Rf ~/opencv*
 
-f_info "MANUAL OPERATION: import the bookmarks \"postinstall/opencv_bookmarks.html\" into the web browser"
