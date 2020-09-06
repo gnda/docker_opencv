@@ -6,9 +6,11 @@ services:
     environment: 
       - XDG_RUNTIME_DIR=/run/user/1000
       - DISPLAY=unix${DISPLAY}
+      - OPENCV_INSTALL_DIR=/usr/local/opencv
       - OPENCV_SAMPLES_DATA_PATH=/data/opencv/samples/data/
     privileged: true
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ./workspace:/workspace
     working_dir: /workspace
+

@@ -5,6 +5,7 @@ services:
     container_name: opencv
     environment: 
       - DISPLAY=host.docker.internal:0
+      - OPENCV_INSTALL_DIR=/usr/local/opencv
       - OPENCV_SAMPLES_DATA_PATH=/data/opencv/samples/data/
     privileged: true
     volumes:
