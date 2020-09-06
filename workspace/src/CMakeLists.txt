@@ -7,16 +7,17 @@ set(EXTRA_LIBS)
 # OpenCV
 # ==========================================================
 
-# If the variable OPENCV_DIR_HINT has not been set
-if (NOT DEFINED OPENCV_DIR_HINT)
+if (DEFINED ENV{OPENCV_INSTALL_DIR})
+  if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Release")
+  endif()
+
   # In case the environment variable OPENCV_INSTALL_DIR is set and
   # CMAKE_BUILD_TYPE has been set (debug/release), link with OpenCV built
   # in Debug if we build in Dbug, link with OpenCV built in Release in we
   # build in Release
-  if (DEFINED ENV{OPENCV_INSTALL_DIR} AND DEFINED CMAKE_BUILD_TYPE)
-    string(TOLOWER "${CMAKE_BUILD_TYPE}" build_type_LOWER)
-    set(OPENCV_DIR_HINT "$ENV{OPENCV_INSTALL_DIR}/${build_type_LOWER}")
-  endif()
+  string(TOLOWER "${CMAKE_BUILD_TYPE}" build_type_LOWER)
+  set(OPENCV_DIR_HINT "$ENV{OPENCV_INSTALL_DIR}/${build_type_LOWER}")
 endif()
 
 find_package(OpenCV HINTS ${OPENCV_DIR_HINT})
@@ -30,7 +31,7 @@ list(APPEND EXTRA_LIBS ${OpenCV_LIBS})
 # In case OpenCV is using Qt
 # ==========================================================
 find_package(Qt5 COMPONENTS Concurrent Core Gui Test Widgets)
-if(Qt5_FOUND)
+if (Qt5_FOUND)
   list(APPEND EXTRA_LIBS Qt5::Concurrent Qt5::Core Qt5::Gui Qt5::Test Qt5::Widgets)
 endif()
 
@@ -38,7 +39,7 @@ endif()
 # In case OpenCV is using OpenMP
 # ==========================================================
 find_package(OpenMP)
-if(OpenMP_CXX_FOUND)
+if (OpenMP_CXX_FOUND)
   list(APPEND EXTRA_LIBS OpenMP::OpenMP_CXX)
 endif()
 
