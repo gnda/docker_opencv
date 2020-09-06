@@ -4,11 +4,9 @@ services:
     build: .
     container_name: opencv
     environment: 
-      - XDG_RUNTIME_DIR=/run/user/1000
-      - DISPLAY=unix${DISPLAY}
+      - DISPLAY=host.docker.internal:0
       - OPENCV_SAMPLES_DATA_PATH=/data/opencv/samples/data/
     privileged: true
     volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ./workspace:/workspace
     working_dir: /workspace
