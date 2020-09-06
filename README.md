@@ -66,7 +66,7 @@ Vous pouvez procéder à l'installation de Docker Desktop si vous voyez :
 ```
 Une fois Docker Desktop installé, il faut aller dans les paramètres et veiller à ce que l'intégration avec Debian soit activée :
 
-<img alt="settings" src="https://user-images.githubusercontent.com/32570153/92321128-d7045e80-f027-11ea-8a24-72a254c9e8cc.png" width="900" height="600">
+<img alt="settings" src="https://user-images.githubusercontent.com/32570153/92321128-d7045e80-f027-11ea-8a24-72a254c9e8cc.png" width="850" height="570">
 
 Cela permet d'appeler Docker Desktop directement depuis Debian, sans devoir l'installer via apt-get.
 Vous pouvez tester docker dans Debian en tapant :
@@ -131,8 +131,17 @@ Une fois l'installation effectuée, votre répertoire de travail sera le dossier
 Il faudra placer vos sources dans le dossier workspace/src.
 
 Pour accéder au container OpenCV, entrez la commande suivante :
+
+**Pour Linux :**
+
 ```
 docker-compose run --rm opencv bash
+```
+
+**Pour Windows 10 :**
+
+```
+docker-compose -f docker-compose.win.yml run --rm opencv bash
 ```
 
 Un shell bash va s'ouvrir dans le chemin /workspace du container OpenCV.
