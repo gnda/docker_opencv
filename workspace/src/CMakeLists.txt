@@ -6,7 +6,20 @@ set(EXTRA_LIBS)
 # ==========================================================
 # OpenCV
 # ==========================================================
-find_package(OpenCV HINTS ${OpenCV_DIR})
+
+# If the variable OPENCV_DIR_HINT has not been set
+if (NOT DEFINED OPENCV_DIR_HINT)
+  # In case the environment variable OPENCV_INSTALL_DIR is set and
+  # CMAKE_BUILD_TYPE has been set (debug/release), link with OpenCV built
+  # in Debug if we build in Dbug, link with OpenCV built in Release in we
+  # build in Release
+  if (DEFINED ENV{OPENCV_INSTALL_DIR} AND DEFINED CMAKE_BUILD_TYPE)
+    string(TOLOWER "${CMAKE_BUILD_TYPE}" build_type_LOWER)
+    set(OPENCV_DIR_HINT "$ENV{OPENCV_INSTALL_DIR}/${build_type_LOWER}")
+  endif()
+endif()
+
+find_package(OpenCV HINTS ${OPENCV_DIR_HINT})
 if (${OpenCV_VERSION_MAJOR} LESS 3)
   message(WARNING "OpenCV version should be 3.0.0 or greater. Found version: ${OpenCV_VERSION}")
 endif()
