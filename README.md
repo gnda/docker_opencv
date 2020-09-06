@@ -17,19 +17,39 @@ Se référer à la [doc officielle](https://docs.docker.com/get-docker/) de Dock
 
 ## Linux
 
-Docker étant fait à la base pour Linux, il n'y a pas à installer Docker Desktop.\
+Docker fonctionnant directement avec Linux, il n'y a pas à installer Docker Desktop.\
 Il faut toutefois installer [docker](https://docs.docker.com/engine/install/) et [docker-compose](https://docs.docker.com/compose/install/) (l'installation de docker dépend de votre distribution).
 
 ## Windows 10
 
+### Méthode 1 : Installer directement Docker Desktop
 
-### WSL2 (Recommandé)
+Télécharger et installer [Docker Desktop](https://www.docker.com/products/docker-desktop) pour Windows.
+
+Lancez Docker Desktop si ce n'est pas déjà fait, puis dans une fenêtre Powershell, entrez :
+```
+docker -v
+```
+
+Si la commande est reconnue vous pouvez continuer.
+
+#### VCXSRV
+
+Pour avoir accès à une interface graphique il faut installer VCXSRV, que vous pouvez obtenir sur [Sourceforge](https://sourceforge.net/projects/vcxsrv/).\
+Vous pourrez ensuite lancer XLaunch (cliquez sur suivant à chaque fois...).
+
+Une fois que XLaunch est lancé, vous pouvez lancer vos applications utilisant OpenCV (voir la section [Usage](#usage)).
+
+
+### Méthode 2 : Installer WSL2 puis Docker Desktop
 
 Si vous souhaitez avoir une distribution Linux sous Windows, c'est possible et cela marche mieux depuis l'arrivée de WSL2 (Windows Subsystem for Linux), depuis fin 2019. Ici nous allons installer Debian sous Windows 10.
 
 WSL2 permet également une meilleure intégration de Docker Desktop sur Windows 10, avec l'usage d'un noyau Linux et une traduction des appels systèmes entre Windows et le noyau Linux.
 
-Avant de poursuivre, un bug est présent sur WSL2 avec Docker Desktop. **Il se peut que toute votre mémoire soit utilisée par WSL2.**\
+Avant de poursuivre, un bug est présent sur WSL2 avec Docker Desktop.\
+**Il se peut que toute votre mémoire soit utilisée par WSL2.**
+
 Pour résoudre cela il faut limiter la mémoire disponible pour WSL2.\
 Tapez <kbd>Win</kbd> + <kbd>R</kbd> et entrez : ```%UserProfile%```. Créez ensuite un fichier .wslconfig comme ceci :
 
@@ -52,7 +72,7 @@ Dans une fenêtre Powershell, entrez la commande suivante :
 Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
 ```
 
-Ensuite, installer Debian à partir du Windows store [en suivant ce lien](https://www.microsoft.com/store/productId/9MSVKQC78PK6).
+Ensuite, installez Debian à partir du Windows store [en suivant ce lien](https://www.microsoft.com/store/productId/9MSVKQC78PK6).
 
 Vous pouvez désormais accéder à Debian depuis le menu démarrer.\
 Lancez Debian puis dans une fenêtre Powershell, entrez:
@@ -74,30 +94,14 @@ Vous pouvez tester docker dans Debian en tapant :
 docker -v
 ````
 
-Pour accéder aux dossier de Debian depuis windows, aller dans "Ce PC" puis faire un clic droit et choisir "Ajouter un lecteur réseau".\
+Pour accéder aux dossier de Debian depuis Windows, aller dans "Ce PC" puis faire un clic droit dans la fenêtre et choisir "Ajouter un lecteur réseau".\
 Le chemin à renseigner sera "\\\wsl$\Debian". Une fois cela fait, le lecteur réseau Debian devrait apparaître :
 
 <img alt="network_drive" src="https://user-images.githubusercontent.com/32570153/92321283-fa7bd900-f028-11ea-86dc-1d84e1ea15f8.png" height="100" width="220">
 
-Pour éviter de jongler avec plusieurs terminaux (bash Debian/Powershell/Invite de commandes...), vous pouvez installer Windows Terminal qui est [diponible sur le store](https://www.microsoft.com/fr-fr/p/windows-terminal/9n0dx20hk701) également.
+Pensez aussi à installer VCXSRV, [comme décrit plus haut](#vcxsrv).
 
-### Docker Desktop
-
-Télécharger et installer [Docker Desktop](https://www.docker.com/products/docker-desktop) pour Windows.
-
-Lancez Docker Desktop si ce n'est pas déjà fait, puis dans une fenêtre Powershell, entrez :
-```
-docker -v
-```
-
-Si la commande est reconnue vous pouvez continuer.
-
-### VCXSRV
-
-Pour avoir accès à une interface graphique il faut installer VCXSRV, que vous pouvez obtenir sur [Sourceforge](https://sourceforge.net/projects/vcxsrv/).\
-Vous pourrez ensuite lancer XLaunch (cliquez sur suivant à chaque fois...).
-
-Une fois que XLaunch est lancé, vous pouvez lancer vos applications utilisant OpenCV (voir la section [Usage](#usage)).
+Pour éviter de jongler avec plusieurs terminaux (bash Debian/Powershell/Invite de commandes...), vous pouvez installer Windows Terminal qui est [disponible sur le store](https://www.microsoft.com/fr-fr/p/windows-terminal/9n0dx20hk701) également.
 
 # Configuration
 
@@ -113,7 +117,7 @@ Dans le répertoire docker_opencv, exécutez la commande suivante :
 **Pour Linux :**
 
 ```
-docker-compose up -d --build
+docker-compose -f docker-compose.linux.yml up -d --build
 ```
 
 **Pour Windows 10 :**
@@ -135,7 +139,7 @@ Pour accéder au container OpenCV, entrez la commande suivante :
 **Pour Linux :**
 
 ```
-docker-compose run --rm opencv bash
+docker-compose -f docker-compose.linux.yml run --rm opencv bash
 ```
 
 **Pour Windows 10 :**
