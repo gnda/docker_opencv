@@ -1,3 +1,16 @@
+- [OpenCV avec Docker](#opencv-avec-docker)
+- [Objectifs](#objectifs)
+- [Installation](#installation)
+  * [Linux](#linux)
+  * [macOS](#macos)
+      - [XQuartz](#xquartz)
+  * [Windows 10](#windows-10)
+    + [Méthode 1 : Installer directement Docker Desktop](#m-thode-1---installer-directement-docker-desktop)
+      - [VCXSRV](#vcxsrv)
+    + [Méthode 2 : Installer WSL2 puis Docker Desktop](#m-thode-2---installer-wsl2-puis-docker-desktop)
+- [Configuration](#configuration)
+- [Usage](#usage)
+
 # OpenCV avec Docker
 
 Ce guide n'est pas exhaustif, pour plus d'informations veuillez consulter les liens suivants :
@@ -5,6 +18,8 @@ Ce guide n'est pas exhaustif, pour plus d'informations veuillez consulter les li
 - [How to use GUI Apps in Linux Docker container from Windows host](https://medium.com/@potatowagon/how-to-use-gui-apps-in-linux-docker-container-from-windows-host-485d3e1c64a3)
 - [Docker in WSL2](https://code.visualstudio.com/blogs/2020/03/02/docker-in-wsl2)
 - [A Practical Guide to Choosing between Docker Containers and VMs](https://www.weave.works/blog/a-practical-guide-to-choosing-between-docker-containers-and-vms)
+
+**La partie macOS n'a pas été testée, il faudrait des retours pour savoir si cela fonctionne correctement.**
 
 # Objectifs
 
@@ -19,6 +34,25 @@ Se référer à la [doc officielle](https://docs.docker.com/get-docker/) de Dock
 
 Docker fonctionnant directement avec Linux, il n'y a pas à installer Docker Desktop.\
 Il faut toutefois installer [docker](https://docs.docker.com/engine/install/) et [docker-compose](https://docs.docker.com/compose/install/) (l'installation de docker dépend de votre distribution).
+
+## macOS
+
+Télécharger et installer [Docker Desktop](https://www.docker.com/products/docker-desktop) pour macOS.
+
+#### XQuartz
+
+Pour avoir accès à une interface graphique il faut installer XQuartz, que vous pouvez trouver [ici](https://www.xquartz.org/).\
+Il faudra ensuite vous reconnecter à votre session, puis lancer XQuartz.
+
+Une fois que XQuartz est lancé, Aller dans les préférences.
+
+<img alt="XQuartz_prefs" src="https://user-images.githubusercontent.com/32570153/92328691-df2dbf80-f062-11ea-9ff1-c805bbff19aa.png" width="330" height="100">
+
+Vérifier dans l'onglet Sécurité que la case "Autoriser les connexions de clients réseaux" soit cochée.
+
+<img alt="XQuartz_security" src="https://user-images.githubusercontent.com/32570153/92328737-1a2ff300-f063-11ea-8aad-06071df5ca9c.png" width="577" height="362">
+
+Vous pouvez passer à la section [Configuration](#configuration).
 
 ## Windows 10
 
@@ -38,7 +72,7 @@ Si la commande est reconnue vous pouvez continuer.
 Pour avoir accès à une interface graphique il faut installer VCXSRV, que vous pouvez obtenir sur [Sourceforge](https://sourceforge.net/projects/vcxsrv/).\
 Vous pourrez ensuite lancer XLaunch (cliquez sur suivant à chaque fois...).
 
-Une fois que XLaunch est lancé, vous pouvez lancer vos applications utilisant OpenCV (voir la section [Usage](#usage)).
+Une fois que XLaunch est lancé, vous pouvez passer à la section [Configuration](#configuration).
 
 
 ### Méthode 2 : Installer WSL2 puis Docker Desktop
@@ -114,13 +148,32 @@ git clone https://github.com/gnda/docker_opencv
 
 Dans le répertoire docker_opencv, exécutez la commande suivante :
 
-**Pour Linux :**
+**Linux**
 
+Pour autoriser les connexions à l'hôte, entrez dans un terminal la commande : 
+```
+xhost +local:docker
+```
+
+Pour créer l'image OpenCV :
 ```
 docker-compose -f docker-compose.linux.yml up -d --build
 ```
 
-**Pour Windows 10 :**
+**macOS**
+
+Pour autoriser les connexions à l'hôte, entrez dans un terminal les commandes : 
+```
+xhost + ${hostname}
+export HOSTNAME=`hostname`
+```
+
+Pour créer l'image OpenCV :
+```
+docker-compose -f docker-compose.mac.yml up -d --build
+```
+
+**Windows 10**
 
 ```
 docker-compose -f docker-compose.win.yml up -d --build
@@ -136,13 +189,25 @@ Il faudra placer vos sources dans le dossier workspace/src.
 
 Pour accéder au container OpenCV, entrez la commande suivante :
 
-**Pour Linux :**
+**Linux**
 
+Il faudra autoriser la connexion à l'hôte (voir plus haut).
+
+Pour lancer le container OpenCV :
 ```
 docker-compose -f docker-compose.linux.yml run --rm opencv bash
 ```
 
-**Pour Windows 10 :**
+**macOS**
+
+Il faudra autoriser la connexion à l'hôte (voir plus haut).
+
+Pour lancer le container OpenCV :
+```
+docker-compose -f docker-compose.mac.yml run --rm opencv bash
+```
+
+**Windows 10**
 
 ```
 docker-compose -f docker-compose.win.yml run --rm opencv bash

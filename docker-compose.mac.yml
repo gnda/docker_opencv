@@ -3,10 +3,11 @@ services:
   opencv:
     build: .
     container_name: opencv
-    environment: 
-      - DISPLAY=host.docker.internal:0
+    environment:
+      - DISPLAY=${HOSTNAME}:0
       - OPENCV_INSTALL_DIR=/usr/local/opencv
       - OPENCV_SAMPLES_DATA_PATH=/data/opencv/samples/data/
     volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
       - ./workspace:/workspace
     working_dir: /workspace

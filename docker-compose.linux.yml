@@ -12,4 +12,3 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ./workspace:/workspace
     working_dir: /workspace
-
