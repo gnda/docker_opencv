@@ -21,9 +21,9 @@ Ce guide n'est pas exhaustif, pour plus d'informations veuillez consulter les li
     + [Méthode 2 : Installer WSL2 puis Docker Desktop](#win-method-2)
 - [Configuration](#configuration)
 - [Usage](#usage)
-- [Problèmes](#issues)
-  * [Windows 10](#issues-win)
-      - [Problèmes avec WSL2](#issues-win-with-wsl2-docker)
+- [Problèmes](#user-content-issues)
+  * [Windows 10](#user-content-issues-win)
+      - [Problèmes avec WSL2](#user-content-issues-win-with-wsl2-docker)
 
 # Objectifs
 
@@ -84,7 +84,7 @@ Si vous souhaitez avoir une distribution Linux sous Windows, c'est possible et c
 
 WSL2 permet également une meilleure intégration de Docker Desktop sur Windows 10, avec l'usage d'un noyau Linux et une traduction des appels systèmes entre Windows et le noyau Linux.
 
-Cependant, WSL2 n'étant pas parfait, il se peut que vous rencontriez des problèmes avec Docker par la suite (voir la section [Problèmes avec WSL2 et Docker](#issues-win-with-wsl2-docker)).
+Cependant, WSL2 n'étant pas parfait, il se peut que vous rencontriez des problèmes avec Docker par la suite (voir la section [Problèmes avec WSL2 et Docker](#user-content-issues-win-with-wsl2-docker)).
 
 D'ailleurs, avant de poursuivre, un bug est présent sur WSL2 avec Docker Desktop.\
 **Il se peut que toute votre mémoire soit utilisée par WSL2.**
@@ -257,11 +257,11 @@ exit
 
 <h2 id="issues-win" >Windows 10</h2>
 
-<h3 id="issues-win-with-wsl2" >Problèmes avec WSL2 et Docker</h3>
+<h3 id="issues-win-with-wsl2-docker" >Problèmes avec WSL2 et Docker</h3>
 
 Il arrive parfois que docker-compose vous affiche l'erreur suivante :
 
-<img alt="docker_credentials_errors" src="https://user-images.githubusercontent.com/32570153/92377194-12745b00-f104-11ea-965e-fffe827119de.png" height="50" width="1100">
+<img alt="docker_credentials_errors" src="https://user-images.githubusercontent.com/32570153/92377194-12745b00-f104-11ea-965e-fffe827119de.png" height="40" width="1000">
 
 Pour corriger cela, faites :
 ```
