@@ -1,17 +1,4 @@
-- [OpenCV avec Docker](#opencv-avec-docker)
-- [Objectifs](#objectifs)
-- [Installation](#installation)
-  * [Linux](#linux)
-  * [macOS](#macos)
-      - [XQuartz](#xquartz)
-  * [Windows 10](#windows-10)
-    + [Méthode 1 : Installer directement Docker Desktop](#m-thode-1---installer-directement-docker-desktop)
-      - [VCXSRV](#vcxsrv)
-    + [Méthode 2 : Installer WSL2 puis Docker Desktop](#m-thode-2---installer-wsl2-puis-docker-desktop)
-- [Configuration](#configuration)
-- [Usage](#usage)
-
-# OpenCV avec Docker
+<h1>OpenCV avec Docker</h1>
 
 Ce guide n'est pas exhaustif, pour plus d'informations veuillez consulter les liens suivants :
 - [Docker Desktop Documentation](https://docs.docker.com/desktop/)
@@ -20,6 +7,23 @@ Ce guide n'est pas exhaustif, pour plus d'informations veuillez consulter les li
 - [A Practical Guide to Choosing between Docker Containers and VMs](https://www.weave.works/blog/a-practical-guide-to-choosing-between-docker-containers-and-vms)
 
 **La partie macOS n'a pas été testée, il faudrait des retours pour savoir si cela fonctionne correctement.**
+
+<h1>Sommaire</h1>
+
+- [Objectifs](#objectifs)
+- [Installation](#installation)
+  * [Linux](#linux)
+  * [macOS](#macos)
+      - [XQuartz](#xquartz)
+  * [Windows 10](#windows-10)
+    + [Méthode 1 : Installer directement Docker Desktop](#win-method-1)
+      - [VCXSRV](#vcxsrv)
+    + [Méthode 2 : Installer WSL2 puis Docker Desktop](#win-method-2)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Problèmes](#issues)
+  * [Windows 10](#issues-win)
+      - [Problèmes avec WSL2](#issues-win-with-wsl2-docker)
 
 # Objectifs
 
@@ -48,7 +52,7 @@ Une fois que XQuartz est lancé, Aller dans les préférences.
 
 <img alt="XQuartz_prefs" src="https://user-images.githubusercontent.com/32570153/92328691-df2dbf80-f062-11ea-9ff1-c805bbff19aa.png" width="330" height="100">
 
-Vérifier dans l'onglet Sécurité que la case "Autoriser les connexions de clients réseaux" soit cochée.
+Vérifier dans l'onglet Sécurité que la case "Autoriser les connexions de clients réseau" soit cochée.
 
 <img alt="XQuartz_security" src="https://user-images.githubusercontent.com/32570153/92328737-1a2ff300-f063-11ea-8aad-06071df5ca9c.png" width="577" height="362">
 
@@ -56,7 +60,7 @@ Vous pouvez passer à la section [Configuration](#configuration).
 
 ## Windows 10
 
-### Méthode 1 : Installer directement Docker Desktop
+<h3 id="win-method-1" >Méthode 1 : Installer directement Docker Desktop</h3>
 
 Télécharger et installer [Docker Desktop](https://www.docker.com/products/docker-desktop) pour Windows.
 
@@ -74,14 +78,15 @@ Vous pourrez ensuite lancer XLaunch (cliquez sur suivant à chaque fois...).
 
 Une fois que XLaunch est lancé, vous pouvez passer à la section [Configuration](#configuration).
 
-
-### Méthode 2 : Installer WSL2 puis Docker Desktop
+<h3 id="win-method-2" >Méthode 2 : Installer WSL2 puis Docker Desktop</h3>
 
 Si vous souhaitez avoir une distribution Linux sous Windows, c'est possible et cela marche mieux depuis l'arrivée de WSL2 (Windows Subsystem for Linux), depuis fin 2019. Ici nous allons installer Debian sous Windows 10.
 
 WSL2 permet également une meilleure intégration de Docker Desktop sur Windows 10, avec l'usage d'un noyau Linux et une traduction des appels systèmes entre Windows et le noyau Linux.
 
-Avant de poursuivre, un bug est présent sur WSL2 avec Docker Desktop.\
+Cependant, WSL2 n'étant pas parfait, il se peut que vous rencontriez des problèmes avec Docker par la suite (voir la section [Problèmes avec WSL2 et Docker](#issues-win-with-wsl2-docker)).
+
+D'ailleurs, avant de poursuivre, un bug est présent sur WSL2 avec Docker Desktop.\
 **Il se peut que toute votre mémoire soit utilisée par WSL2.**
 
 Pour résoudre cela il faut limiter la mémoire disponible pour WSL2.\
@@ -247,3 +252,20 @@ Pour sortir du container OpenCV :
 ```
 exit
 ```
+
+<h1 id="issues" >Problèmes</h1>
+
+<h2 id="issues-win" >Windows 10</h2>
+
+<h3 id="issues-win-with-wsl2" >Problèmes avec WSL2 et Docker</h3>
+
+Il arrive parfois que docker-compose vous affiche l'erreur suivante :
+
+<img alt="docker_credentials_errors" src="https://user-images.githubusercontent.com/32570153/92377194-12745b00-f104-11ea-965e-fffe827119de.png" height="50" width="1100">
+
+Pour corriger cela, faites :
+```
+rm ~/.docker/config.json
+```
+
+Puis relancez votre distribution en rouvrant le terminal (Debian dans notre cas).
