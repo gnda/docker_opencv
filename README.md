@@ -23,7 +23,8 @@ Ce guide n'est pas exhaustif, pour plus d'informations veuillez consulter les li
 - [Usage](#usage)
 - [Problèmes](#user-content-issues)
   * [Windows 10](#user-content-issues-win)
-      - [Problèmes avec WSL2](#user-content-issues-win-with-wsl2-docker)
+      - [WSL2](#user-content-issues-win-wsl2)
+      - [Docker Desktop](#user-content-issues-win-docker-desktop)
 
 # Objectifs
 
@@ -84,7 +85,7 @@ Si vous souhaitez avoir une distribution Linux sous Windows, c'est possible et c
 
 WSL2 permet également une meilleure intégration de Docker Desktop sur Windows 10, avec l'usage d'un noyau Linux et une traduction des appels systèmes entre Windows et le noyau Linux.
 
-Cependant, WSL2 n'étant pas parfait, il se peut que vous rencontriez des problèmes avec Docker par la suite (voir la section [Problèmes avec WSL2 et Docker](#user-content-issues-win-with-wsl2-docker)).
+Cependant, WSL2 n'étant pas parfait, il se peut que vous rencontriez des problèmes avec Docker par la suite (voir la section [Problèmes](#user-content-issues-win)).
 
 D'ailleurs, avant de poursuivre, un bug est présent sur WSL2 avec Docker Desktop.\
 **Il se peut que toute votre mémoire soit utilisée par WSL2.**
@@ -141,6 +142,8 @@ Le chemin à renseigner sera "\\\wsl$\Debian". Une fois cela fait, le lecteur r�
 Pensez aussi à installer VCXSRV, [comme décrit plus haut](#vcxsrv).
 
 Pour éviter de jongler avec plusieurs terminaux (bash Debian/Powershell/Invite de commandes...), vous pouvez installer Windows Terminal qui est [disponible sur le store](https://www.microsoft.com/fr-fr/p/windows-terminal/9n0dx20hk701) également.
+
+Si vous rencontrez un problème sur Windows avec Docker ou WSL2, pensez à consulter la section [Problèmes](#user-content-issues-win).
 
 # Configuration
 
@@ -257,7 +260,9 @@ exit
 
 <h2 id="issues-win" >Windows 10</h2>
 
-<h3 id="issues-win-with-wsl2-docker" >Problèmes avec WSL2 et Docker</h3>
+<h3 id="issues-win-wsl2" >WSL2</h3>
+
+<h4 id="credentials-initialization-error">Credentials initialization error</h4>
 
 Il arrive parfois que docker-compose vous affiche l'erreur suivante :
 
@@ -269,3 +274,26 @@ rm ~/.docker/config.json
 ```
 
 Puis relancez votre distribution en rouvrant le terminal (Debian dans notre cas).
+
+<h4 id="no-webcam">La webcam ne marche pas</h4>
+
+L'usage de la webcam n'est pas fonctionnelle pour le moment mais si vous le souhaitez, des solutions existent, comme [ici](https://funvision.blogspot.com/2019/12/opencv-web-camera-and-video-streams-in.html) par exemple.\
+Dans tous les cas nous n'aurons **pas besoin de la webcam pour le cours de traitement de flux vidéo**.
+
+<h3 id="issues-win-docker-desktop" >Docker Desktop</h3>
+
+<h4 id="credentials-initialization-error">Docker ne démarre pas</h4>
+
+Il se peut que Docker Desktop soit bloqué sur "starting" et ne se lance pas. Pour résoudre cela, forcer le redémarrage de Docker en cliquant sur "Restart" dans l'onglet "Troubleshoot".
+
+<img alt="settings-troubleshoot" src="https://user-images.githubusercontent.com/32570153/92405776-a2cb9380-f136-11ea-8717-e12ffbc58344.png"  width="850" height="570">
+
+<h4 id="credentials-initialization-error">Plus d'espace libre</h4>
+
+Pour supprimer des images et volumes, l'usage de commande telles que :
+```
+docker system prune -a
+```
+doivent libérer de l'espace.
+
+Si ce n'est pas le cas, essayer de cliquer sur "Clean / Purge data" dans l'onglet [Troubleshoot](#credentials-initialization-error) et cocher toutes les cases **pour supprimer toutes vos data liées à docker (images ou autres)**.
