@@ -8,6 +8,11 @@ Ce guide n'est pas exhaustif, pour plus d'informations veuillez consulter les li
 
 **La partie macOS n'a pas été testée, il faudrait des retours pour savoir si cela fonctionne correctement.**
 
+<h4 style="color:red;">Disclaimer :<br>
+La solution présentée ici n'est pas fiable à 100% et est destinée à ceux qui veulent faire des test.<br>
+Dans le cadre de TPs notés / Évaluations, veuillez privilégier l'usage de la machine virtuelle fournie par votre professeur.<br>
+Nous ne serons pas responsables des désagréments que vous pouvez rencontrer, vous êtes prévenus.</h4>
+
 <h1>Sommaire</h1>
 
 - [Objectifs](#objectifs)
