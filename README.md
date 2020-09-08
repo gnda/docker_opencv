@@ -279,14 +279,25 @@ Puis relancez votre distribution en rouvrant le terminal (Debian dans notre cas)
 
 <h4 id="no-webcam">La webcam ne marche pas</h4>
 
-L'usage de la webcam n'est pas fonctionnelle pour le moment mais si vous le souhaitez, des solutions existent, comme [ici](https://funvision.blogspot.com/2019/12/opencv-web-camera-and-video-streams-in.html) par exemple.\
+L'usage de la webcam n'est pas fonctionnel pour le moment mais si vous le souhaitez, des solutions existent, comme [ici](https://funvision.blogspot.com/2019/12/opencv-web-camera-and-video-streams-in.html) par exemple.\
 Dans tous les cas nous n'aurons **pas besoin de la webcam pour le cours de traitement de flux vidéo**.
 
 <h3 id="issues-win-docker-desktop" >Docker Desktop</h3>
 
-<h4 id="credentials-initialization-error">Docker ne démarre pas</h4>
+<h4 id="credentials-initialization-error">Docker Desktop ne démarre pas</h4>
 
-Il se peut que Docker Desktop soit bloqué sur "starting" et ne se lance pas. Pour résoudre cela, forcer le redémarrage de Docker en cliquant sur "Restart" dans l'onglet "Troubleshoot".
+Il se peut que Docker Desktop soit bloqué sur "starting" et ne se lance pas. 
+
+Vous pouvez essayer de forcer le redémarrage de Docker en cliquant sur "Restart" dans l'onglet "Troubleshoot".
+
+Si docker est toujours bloqué, fermez complètement Docker Desktop. Puis faites <kbd>Win</kbd> + <kbd>R</kbd> et entrez : ```services.msc```\
+Arrêtez puis redémarrez le service "LxssManager".
+
+<img src="https://user-images.githubusercontent.com/32570153/92526344-9a9e5180-f225-11ea-835a-a35e7470ad08.png" alt="LxssManager_reset" width="700" height="300">
+
+Relancez Docker Desktop.
+
+Si cela ne fonctionne toujours pas vous pouvez essayer de cliquer sur "Reset to factory defaults" dans l'onglet "Troubleshoot" pour réinitialiser la config de Docker Desktop.
 
 <img alt="settings-troubleshoot" src="https://user-images.githubusercontent.com/32570153/92405776-a2cb9380-f136-11ea-8717-e12ffbc58344.png"  width="850" height="570">
 
@@ -298,4 +309,4 @@ docker system prune -a
 ```
 doivent libérer de l'espace.
 
-Si ce n'est pas le cas, essayer de cliquer sur "Clean / Purge data" dans l'onglet [Troubleshoot](#credentials-initialization-error) et cocher toutes les cases **pour supprimer toutes vos data liées à docker (images ou autres)**.
+Si ce n'est pas le cas, essayer de cliquer sur "Clean / Purge data" dans l'onglet [Troubleshoot](#credentials-initialization-error) et cocher toutes les cases **pour supprimer toutes vos data liées à docker (Attention : cela supprimera vos images, volumes, containers...)**.
