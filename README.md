@@ -1,5 +1,7 @@
 <h1>OpenCV avec Docker</h1>
 
+<img alt="XQuartz_security" src="https://user-images.githubusercontent.com/32570153/92456631-790c7e00-f1c3-11ea-9595-783ea8821963.png" width="1200" height="160">
+
 Ce guide n'est pas exhaustif, pour plus d'informations veuillez consulter les liens suivants :
 - [Docker Desktop Documentation](https://docs.docker.com/desktop/)
 - [How to use GUI Apps in Linux Docker container from Windows host](https://medium.com/@potatowagon/how-to-use-gui-apps-in-linux-docker-container-from-windows-host-485d3e1c64a3)
@@ -7,11 +9,6 @@ Ce guide n'est pas exhaustif, pour plus d'informations veuillez consulter les li
 - [A Practical Guide to Choosing between Docker Containers and VMs](https://www.weave.works/blog/a-practical-guide-to-choosing-between-docker-containers-and-vms)
 
 **La partie macOS n'a pas été testée, il faudrait des retours pour savoir si cela fonctionne correctement.**
-
-<h4 style="color:red;">Disclaimer :<br>
-La solution présentée ici n'est pas fiable à 100% et est destinée à ceux qui veulent faire des test.<br>
-Dans le cadre de TPs notés / Évaluations, veuillez privilégier l'usage de la machine virtuelle fournie par votre professeur.<br>
-Nous ne serons pas responsables des désagréments que vous pouvez rencontrer, vous êtes prévenus.</h4>
 
 <h1>Sommaire</h1>
 
