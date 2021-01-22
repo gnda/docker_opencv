@@ -18,9 +18,7 @@ Ce guide n'est pas exhaustif, pour plus d'informations veuillez consulter les li
   * [macOS](#macos)
       - [XQuartz](#xquartz)
   * [Windows 10](#windows-10)
-    + [Méthode 1 : Installer directement Docker Desktop](#win-method-1)
-      - [VCXSRV](#vcxsrv)
-    + [Méthode 2 : Installer WSL2 puis Docker Desktop](#win-method-2)
+    - [VCXSRV](#vcxsrv)
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [Problèmes](#user-content-issues)
@@ -63,25 +61,9 @@ Vous pouvez passer à la section [Configuration](#configuration).
 
 ## Windows 10
 
-<h3 id="win-method-1" >Méthode 1 : Installer directement Docker Desktop</h3>
+<h3 id="win-install" >Installer WSL2 puis Docker Desktop</h3>
 
-Télécharger et installer [Docker Desktop](https://www.docker.com/products/docker-desktop) pour Windows.
-
-Lancez Docker Desktop si ce n'est pas déjà fait, puis dans une fenêtre Powershell, entrez :
-```
-docker -v
-```
-
-Si la commande est reconnue vous pouvez continuer.
-
-#### VCXSRV
-
-Pour avoir accès à une interface graphique il faut installer VCXSRV, que vous pouvez obtenir sur [Sourceforge](https://sourceforge.net/projects/vcxsrv/).\
-Vous pourrez ensuite lancer XLaunch (cliquez sur suivant à chaque fois...).
-
-Une fois que XLaunch est lancé, vous pouvez passer à la section [Configuration](#configuration).
-
-<h3 id="win-method-2" >Méthode 2 : Installer WSL2 puis Docker Desktop</h3>
+**Veuillez suivre [ce lien](https://docs.microsoft.com/fr-fr/windows/wsl/install-win10#step-1---enable-the-windows-subsystem-for-linux) au préalable pour l'installation de WSL2, ce qui suit est complémentaire.**
 
 Si vous souhaitez avoir une distribution Linux sous Windows, c'est possible et cela marche mieux depuis l'arrivée de WSL2 (Windows Subsystem for Linux), depuis fin 2019. Ici nous allons installer Debian sous Windows 10.
 
@@ -109,7 +91,7 @@ Pour vérifier votre version de Windows faites <kbd>Win</kbd> + <kbd>R</kbd> et 
 
 Si votre version est inférieure, vous pouvez mettre à jour Windows [en suivant ce lien](https://www.microsoft.com/fr-fr/software-download/windows10).
 
-Dans une fenêtre Powershell, entrez la commande suivante :
+Si ce n'est pas déjà fait, dans une fenêtre Powershell, entrez la commande suivante :
 ```
 Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
 ```
@@ -126,6 +108,16 @@ Vous pouvez procéder à l'installation de Docker Desktop si vous voyez :
   NAME           STATE           VERSION
 * Debian         Running         2
 ```
+
+Télécharger et installer [Docker Desktop](https://www.docker.com/products/docker-desktop) pour Windows.
+
+Lancez Docker Desktop si ce n'est pas déjà fait, puis dans une fenêtre Powershell, entrez :
+```
+docker -v
+```
+
+Si la commande est reconnue vous pouvez continuer.
+
 Une fois Docker Desktop installé, il faut aller dans les paramètres et veiller à ce que l'intégration avec Debian soit activée :
 
 <img alt="settings" src="https://user-images.githubusercontent.com/32570153/92321128-d7045e80-f027-11ea-8a24-72a254c9e8cc.png" width="850" height="570">
@@ -141,12 +133,16 @@ Le chemin à renseigner sera "\\\wsl$\Debian". Une fois cela fait, le lecteur r�
 
 <img alt="network_drive" src="https://user-images.githubusercontent.com/32570153/92321283-fa7bd900-f028-11ea-86dc-1d84e1ea15f8.png" height="100" width="220">
 
-Pensez aussi à installer VCXSRV, [comme décrit plus haut](#vcxsrv).
 
 Pour éviter de jongler avec plusieurs terminaux (bash Debian/Powershell/Invite de commandes...), vous pouvez installer Windows Terminal qui est [disponible sur le store](https://www.microsoft.com/fr-fr/p/windows-terminal/9n0dx20hk701) également.
 
 Si vous rencontrez un problème sur Windows avec Docker ou WSL2, pensez à consulter la section [Problèmes](#user-content-issues-win).
+#### VCXSRV
 
+Pour avoir accès à une interface graphique il faut installer VCXSRV, que vous pouvez obtenir sur [Sourceforge](https://sourceforge.net/projects/vcxsrv/).\
+Vous pourrez ensuite lancer XLaunch (cliquez sur suivant à chaque fois...).
+
+Une fois que XLaunch est lancé, vous pouvez passer à la section [Configuration](#configuration).
 # Configuration
 
 Il faut lancer au moins une fois docker pour construire l'image contenant OpenCV.\
