@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-LABEL maintainer="Kévin Nandacoumar <kevin.nandacoumar@gmail.com>"
+LABEL maintainer="Philippe Foubert <philippe.foubert@free.fr>"
 
 ADD ./scripts/opencv.sh /opt/scripts/opencv.sh
 
